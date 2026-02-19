@@ -12,3 +12,15 @@ input, select { width:100%; margin:8px 0; padding:8px; }
 button { padding:8px 12px; background:#1e90ff; color:white; border:none; border-radius:4px; cursor:pointer; }
 .address-box { display:flex; gap:5px; }
 @media (max-width:600px){ .address-box{flex-direction:column;} }
+#table {
+  width: 800px;              /* 테이블 가로 크기 */
+  margin: 0 auto;            /* 가운데 정렬 */
+  border-collapse: collapse; /* 이중선 제거 */
+}
+
+#table th, #table td {
+  border: 1px solid #ccc;    /* 얇은 선 */
+  padding: 6px;
+  text-align: center;
+}
+
