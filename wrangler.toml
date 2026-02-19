@@ -1,0 +1,8 @@
+
+name = "cleanhouse"
+pages_build_output_dir = "./"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "mydb"
+database_id = "dcf0fecd-3270-47a0-8589-15a6a105d600"

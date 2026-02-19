@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>작업예약</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+</head>
+<body>
+
+<h1>작업예약</h1>
+
+<div class="calendar-header">
+<button onclick="prevMonth()">◀</button>
+<h2 id="monthYear"></h2>
+<button onclick="nextMonth()">▶</button>
+</div>
+
+<div id="calendar"></div>
+
+<div id="reservationForm" class="hidden">
+<h3 id="selectedDate"></h3>
+
+<form id="reserveForm">
+<input type="text" name="name" placeholder="이름" required>
+<input type="tel" name="phone" placeholder="연락처" required>
+
+<select name="category" required>
+<option value="">청소 범주 선택</option>
+<option>아파트</option>
+<option>오피스텔</option>
+<option>상가</option>
+<option>사무실</option>
+</select>
+
+<select name="timeslot" required>
+<option value="">시간대 선택</option>
+<option value="오전">오전 (09:00~12:00)</option>
+<option value="오후">오후 (13:00~17:00)</option>
+</select>
+
+<div class="address-box">
+<input type="text" id="roadAddress" name="roadAddress" placeholder="도로명 주소 검색" readonly required>
+<button type="button" onclick="execDaumPostcode()">주소 검색</button>
+</div>
+
+<input type="text" name="detailAddress" placeholder="상세주소 (동/호수)" required>
+<input type="number" name="pyeong" placeholder="평수 입력" required>
+
+<p id="priceResult"></p>
+
+<button type="submit">예약하기</button>
+</form>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
