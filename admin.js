@@ -10,6 +10,7 @@ tbody.innerHTML+=`<tr>
 <td>${r.timeslot}</td>
 <td>${r.name}</td>
 <td>${r.category}</td>
+<td>${r.roadAddress}</td>
 <td>${r.pyeong}</td>
 <td>${r.status}</td>
 <td><button onclick="confirmRes(${r.id})">확정</button></td>
