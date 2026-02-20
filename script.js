@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function() {
   loadWorkers();
 });
 
-//loadWorkers();
+loadWorkers();
 
 fetchPrice();
 generateCalendar();
