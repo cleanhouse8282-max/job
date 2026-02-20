@@ -76,37 +76,63 @@ const total=this.value*pricePerPyeong;
 document.getElementById("priceResult").innerText="예상금액: "+total.toLocaleString()+"원";
 });
 
-document.getElementById("reserveForm").addEventListener("submit",async function(e){
-e.preventDefault();
-const formData=new FormData(this);
-formData.append("date",this.dataset.date);
-const res=await fetch("/api/reserve",{method:"POST",body:formData});
-if(res.ok){ alert("예약 완료"); generateCalendar(); this.reset(); }
-else{ alert("이미 예약됨"); }
-});
+// document.getElementById("reserveForm").addEventListener("submit",async function(e){
+//e.preventDefault();
+//const formData=new FormData(this);
+//formData.append("date",this.dataset.date);
+//const res=await fetch("/api/reserve",{method:"POST",body:formData});
+//if(res.ok){ alert("예약 완료"); generateCalendar(); this.reset(); }
+//else{ alert("이미 예약됨"); }
+//});
 
-async function loadWorkers() {
-  const res = await fetch("/api/workers");   // Cloudflare Functions 경로
-  const workers = await res.json();
+//async function loadWorkers() {
+//  const res = await fetch("/api/workers");   // Cloudflare Functions 경로
+//  const workers = await res.json();
 
-  const select = document.getElementById("workerSelect");
-  select.innerHTML = '<option value="">작업자 선택</option>';
+//  const select = document.getElementById("workerSelect");
+//  select.innerHTML = '<option value="">작업자 선택</option>';
 
-  workers.forEach(worker => {
-    const option = document.createElement("option");
-    option.value = worker.id;
-    option.textContent = worker.name;
-    select.appendChild(option);
+//  workers.forEach(worker => {
+//    const option = document.createElement("option");
+//    option.value = worker.id;
+//    option.textContent = worker.name;
+//    select.appendChild(option);
+//  });
+//}
+
+// modify 2026.02.20
+document.getElementById("reserveForm").addEventListener("submit", async function(e){
+  e.preventDefault();
+
+  const formData = new FormData(this);
+
+  // ⭐ 작업자 값 강제 추가 (안전하게)
+  const workerId = document.getElementById("workerSelect").value;
+
+  if (!workerId) {
+    alert("작업자를 선택해주세요.");
+    return;
+  }
+
+  formData.append("worker_id", workerId);
+  formData.append("date", this.dataset.date);
+
+  const res = await fetch("/api/reserve", {
+    method: "POST",
+    body: formData
   });
-}
 
+  if(res.ok){
+    alert("예약 완료");
+    generateCalendar();
+    this.reset();
+  } else {
+    alert("이미 예약됨");
+  }
+});
 // 페이지 로드 후 실행
-// document.addEventListener("DOMContentLoaded", loadWorkers);
 document.addEventListener("DOMContentLoaded", function() {
   loadWorkers();
+  fetchPrice();
+  generateCalendar();
 });
-
-loadWorkers();
-
-fetchPrice();
-generateCalendar();
