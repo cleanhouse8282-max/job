@@ -5,7 +5,7 @@ const {DB}=context.env;
 try{
 await DB.prepare("INSERT INTO reservations (name,phone,category,timeslot,roadAddress,detailAddress,pyeong,date,status,worker_id) VALUES (?,?,?,?,?,?,?,?,?,?)")
 .bind(formData.get("name"),formData.get("phone"),formData.get("category"),formData.get("timeslot"),
-formData.get("roadAddress"),formData.get("detailAddress"),formData.get("pyeong"),formData.get("date"),"pending",formData.get("workerSelect")).run();
+formData.get("roadAddress"),formData.get("detailAddress"),formData.get("pyeong"),formData.get("date"),"pending",formData.get("worker_id")).run();
 return new Response("OK");
 }catch{return new Response("Duplicate",{status:400});}
 }
