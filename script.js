@@ -85,5 +85,21 @@ if(res.ok){ alert("예약 완료"); generateCalendar(); this.reset(); }
 else{ alert("이미 예약됨"); }
 });
 
+async function loadWorkers() {
+  const res = await fetch("/workers");
+  const workers = await res.json();
+
+  const select = document.getElementById("workerSelect");
+
+  workers.forEach(worker => {
+    const option = document.createElement("option");
+    option.value = worker.id;     // DB의 id
+    option.textContent = worker.name;  // 화면에 표시될 이름
+    select.appendChild(option);
+  });
+}
+
+loadWorkers();
+
 fetchPrice();
 generateCalendar();
