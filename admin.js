@@ -13,7 +13,7 @@ tbody.innerHTML+=`<tr>
 <td>${r.roadAddress}, ${r.detailAddress}</td>
 <td>${r.pyeong}</td>
 <td>${r.status}</td>
-<td>${r.worker_id} {r.worker_name} </td>
+<td>${r.worker_id} ${r.worker_name} </td>
 <td><button onclick="confirmRes(${r.id})">확정</button></td>
 <td><button onclick="cancelRes(${r.id})">취소</button></td>
 </tr>`;
