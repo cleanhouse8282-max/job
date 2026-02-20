@@ -86,7 +86,7 @@ else{ alert("이미 예약됨"); }
 });
 
 async function loadWorkers() {
-  const res = await fetch("/workers");   // Cloudflare Functions 경로
+  const res = await fetch("/api/workers");   // Cloudflare Functions 경로
   const workers = await res.json();
 
   const select = document.getElementById("workerSelect");
