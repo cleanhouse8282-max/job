@@ -89,15 +89,32 @@ async function loadWorkers() {
   const res = await fetch("/workers");
   const workers = await res.json();
 
-  const select = document.getElementById("workerSelect");
+  const select = $("#workerSelect");
 
   workers.forEach(worker => {
-    const option = document.createElement("option");
-    option.value = worker.id;     // DB의 id
-    option.textContent = worker.name;  // 화면에 표시될 이름
-    select.appendChild(option);
+    const option = new Option(
+      `${worker.name} ⭐ ${worker.avg_rating.toFixed(1)}`,
+      worker.id,
+      false,
+      false
+    );
+    select.append(option);
+  });
+
+  select.select2({
+    placeholder: "작업자를 검색하세요",
+    allowClear: true
   });
 }
+
+$(document).ready(function() {
+  loadWorkers();
+});
+
+$('#workerSelect').on('change', function () {
+  const workerId = $(this).val();
+  console.log("선택된 작업자:", workerId);
+});
 
 loadWorkers();
 
