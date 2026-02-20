@@ -101,9 +101,12 @@ async function loadWorkers() {
 }
 
 // 페이지 로드 후 실행
-document.addEventListener("DOMContentLoaded", loadWorkers);
+// document.addEventListener("DOMContentLoaded", loadWorkers);
+document.addEventListener("DOMContentLoaded", function() {
+  loadWorkers();
+});
 
-loadWorkers();
+//loadWorkers();
 
 fetchPrice();
 generateCalendar();
