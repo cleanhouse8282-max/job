@@ -1,6 +1,6 @@
 export async function onRequest(env) {
   if(!auth(env.request)) return new Response("Unauthorized",{status:401});
-  const {DB}=env.env;
+  const {DB}=env;
   return Response.json([{id:1, name:"테스트작업자"}]);
 }
 //
