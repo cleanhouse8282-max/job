@@ -14,7 +14,7 @@
 //  return Response.json(result.results);
 //}
 
-export async function onRequestGet(context){
+export async function onRequest(context){
 if(!auth(context.request)) return new Response("Unauthorized",{status:401});
 const {DB}=context.env;
 const {results}=await DB.prepare("SELECT id, name FROM workers ORDER BY name").all();
