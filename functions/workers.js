@@ -4,7 +4,6 @@ export async function onRequest({ request, env }) {
   const result = await db.prepare(`
     SELECT id, name
     FROM workers
-    WHERE active = 1
     ORDER BY name ASC
   `).all();
 
