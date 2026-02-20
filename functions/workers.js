@@ -4,7 +4,7 @@ export async function onRequest({ request, env }) {
   const result = await db.prepare(`
     SELECT id, name
     FROM workers
-    WHERE is_active = 1
+    WHERE active = 1
     ORDER BY name ASC
   `).all();
 
