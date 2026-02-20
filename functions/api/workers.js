@@ -5,14 +5,15 @@ export async function onRequest(context) {
   //const db = env.mydb;
   const {db}=context.env;
 
-  const {result} = await db.prepare(`
+  const {results} = await db.prepare("
     SELECT id, name
     FROM workers
     WHERE active = 1
     ORDER BY name ASC
-  `).all();
+  ").all();
 
-  return Response.json(result.results);
+ // return Response.json(result.results);
+   return Response.json(results);
 }
 
 //export async function onRequest(context){
