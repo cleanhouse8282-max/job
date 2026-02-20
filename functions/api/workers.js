@@ -1,8 +1,9 @@
 //export async function onRequest() {
 //  return Response.json([{id:1, name:"테스트작업자"}]);
 //}
-export async function onRequest({ env }) {
-  const db = env.mydb;
+export async function onRequest({ context }) {
+  //const db = env.mydb;
+  const {db}=context.env;
 
   const {result} = await db.prepare(`
     SELECT id, name
